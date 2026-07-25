@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Bookers2" %></title>
+    <title><%= yield(:title) || "Bookers2" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -23,6 +23,24 @@
   </head>
 
   <body>
+    <header>
+      <ul>
+        <% if authenticated? %>
+          <li>
+            <%= link_to "ログアウト", sign_out_path, data: { turbo_method: :delete } %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "新規登録", sign_up_path %>
+          </li>
+          <li>
+            <%= link_to "ログイン", sign_in_path %>
+          </li>
+        <% end %>
+      </ul>
+    </header>
+
+
     <%= yield %>
   </body>
 </html>
