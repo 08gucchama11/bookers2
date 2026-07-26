@@ -27,8 +27,25 @@
   <body>
     <header class="bg-dark">
       <% if authenticated? %>
-        <nav>
-          <%= link_to "ログアウト", sign_out_path, data: { turbo_method: :delete } %>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid mx-5">
+            <%= link_to "Bookers", root_path, class: "navbar-brand text-light" %>
+            <div class="navbar-nav ms-auto">
+              <%= link_to root_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-house"></i> Home
+              <% end %>
+              <%= link_to home_about_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-users"></i> Users
+              <% end %>
+              <%= link_to sign_up_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-book-open"></i> Books
+              <% end %>
+              <%= link_to sign_out_path, data: { turbo_method: :delete }, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              <% end %>
+
+            </div>
+          </div>
         </nav>
       <% else %>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
