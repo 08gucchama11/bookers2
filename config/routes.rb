@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: "homes#top"
   get "home/about" => "homes#about"
 
@@ -18,4 +19,5 @@ Rails.application.routes.draw do
 
   # 投稿機能
   resources :books
+
 end
