@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "users/sign_up", to: "users#new", as: :sign_up
 
   # ユーザー作成・詳細・編集・更新
-  resources :users, only: [:create, :show, :edit, :update]
+  resources :users, only: [:create, :show, :edit, :update, :index]
 
   # パスワード再設定
   resources :passwords, only: [:new, :create, :edit, :update], param: :token

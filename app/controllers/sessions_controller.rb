@@ -14,9 +14,15 @@ class SessionsController < ApplicationController
     end
   end
 
-
   def destroy
     terminate_session
     redirect_to root_path
   end
+
+  private
+
+  def after_authentication_url
+    user_path(Current.user)
+  end
+
 end
