@@ -21,7 +21,11 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
+    @user = Current.user     # ← userinfo 用
+    @book = Book.new         # ← new book フォーム用
   end
+
  
   private
  
