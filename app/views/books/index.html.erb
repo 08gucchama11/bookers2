@@ -1,2 +1,11 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <%= render "users/userinfo", user: @user %>
+      <%= render "books/new", book: @book %>
+    </div>
+    <div class="col-8">
+      <h1>Books</h1>
+    </div>
+  </div>
+</div>
