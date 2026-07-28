@@ -2,5 +2,5 @@
 <%= image_tag user.get_profile_image, size: "150x150" %>
 <p><strong>Name:</strong> <%= user.name %></p>
 <p><strong>Introduction:</strong> <%= user.introduction %></p>
-<%= link_to "Edit Profile", edit_user_path(user), class: "btn btn-primary" %>
+<%= link_to "Edit Profile", edit_user_path(Current.user), class: "btn btn-primary" %>
 

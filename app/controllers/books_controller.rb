@@ -34,7 +34,7 @@ class BooksController < ApplicationController
     if @book.update(book_params)
       redirect_to @book
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

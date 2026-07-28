@@ -27,11 +27,25 @@ class UsersController < ApplicationController
     @book = Book.new         # ← new book フォーム用
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user, notice: "You have updated user successfully."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
  
   private
  
   def user_params
-    params.require(:user).permit(:name, :email_address, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email_address, :password, :password_confirmation, :image, :introduction)
   end
 end
 
