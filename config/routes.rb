@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   resources :passwords, only: [:new, :create, :edit, :update], param: :token
 
   # 投稿機能
-  resources :books
+  resources :books, only: [:index, :show, :edit, :update, :destroy, :new, :create]
 
 end

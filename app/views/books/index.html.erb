@@ -6,6 +6,31 @@
     </div>
     <div class="col-8">
       <h1>Books</h1>
+      <table class="table border-top">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <%= image_tag book.get_image, size: "80x80" %>
+              </td>
+              <td>
+                <%= link_to book.title, book_path(book) %>
+              </td>
+              <td>
+                <%= book.body %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     </div>
   </div>
 </div>
