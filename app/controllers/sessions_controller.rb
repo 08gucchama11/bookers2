@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     if (user = User.find_by(name: params[:name]))&.authenticate(params[:password])
+      flash[:notice] = "Signed in successfully."
       start_new_session_for user
       redirect_to after_authentication_url
     else
@@ -15,6 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "Signed out successfully."
     terminate_session
     redirect_to root_path
   end

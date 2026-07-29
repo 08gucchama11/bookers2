@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  # 認証をスキップ: サインアップ（new, create）はログイン前に行うため
-  allow_unauthenticated_access only: [:new, :create] 
- 
+  allow_unauthenticated_access only: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -9,11 +8,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to sign_in_path, notice: "ユーザー登録が完了しました！続けてログインしてください。"
+      session[:user_id] = @user.id
+      start_new_session_for @user
+      flash[:notice] = "Welcome! You have signed up successfully."
+      redirect_to user_path(@user)
     else
       render :new, status: :unprocessable_entity
-    end
   end
+end
 
   def show
     @user = User.find(params[:id])
@@ -23,8 +25,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @user = Current.user     # ← userinfo 用
-    @book = Book.new         # ← new book フォーム用
+    @user = Current.user
+    @book = Book.new
   end
 
   def edit
@@ -34,7 +36,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user, notice: "You have updated user successfully."
+      flash[:notice] = "You have updated user successfully."
+      redirect_to @user
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,7 +46,6 @@ class UsersController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to books_path, notice: "本を削除しました"
   end
 
   private
@@ -52,4 +54,3 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email_address, :password, :password_confirmation, :image, :introduction)
   end
 end
-
