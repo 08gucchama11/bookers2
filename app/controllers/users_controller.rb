@@ -20,7 +20,9 @@ class UsersController < ApplicationController
 
   def show
     @book = Book.new
+    @user = User.find(params[:id])
     @books = @user.books
+    @book = Book.new
   end
 
   def index
@@ -46,6 +48,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
   end
 
   def is_matching_login_user

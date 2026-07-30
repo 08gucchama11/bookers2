@@ -27,6 +27,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user = Current.user
+    @book.user_id = Current.user.id
+    @books = Book.all
+    @user = Current.user
     if @book.save
       flash[:notice] = "Book was successfully created."
       redirect_to book_path(@book)
@@ -34,6 +37,7 @@ class BooksController < ApplicationController
       @books = Book.all
       @user = Current.user 
       render :index, status: :unprocessable_entity
+      render :"users/show", status: :unprocessable_entity
     end
   end
 
