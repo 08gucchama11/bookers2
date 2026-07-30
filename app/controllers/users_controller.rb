@@ -14,13 +14,13 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       render :new, status: :unprocessable_entity
+    end
   end
-end
 
   def show
     @user = User.find(params[:id])
-    @book = Book.new
     @books = @user.books
+    @book = Book.new
   end
 
   def index
@@ -46,6 +46,7 @@ end
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
+    redirect_to books_path
   end
 
   private
