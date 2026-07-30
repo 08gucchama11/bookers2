@@ -26,21 +26,17 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    @book.user = Current.user
     @book.user_id = Current.user.id
-    @books = Book.all
-    @user = Current.user
+
     if @book.save
-      flash[:notice] = "Book was successfully created."
-      redirect_to book_path(@book)
+      flash[:notice] = "You have created book successfully."
+      redirect_to @book
     else
-      @books = Book.all
-      @user = Current.user 
-      render :index, status: :unprocessable_entity
-      render :"users/show", status: :unprocessable_entity
+      @user = Current.user
+      @books = @user.books
+      render "users/show", status: :unprocessable_entity
     end
   end
-
 
   def update
     @book = Book.find(params[:id])

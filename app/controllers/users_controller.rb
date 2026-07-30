@@ -48,6 +48,8 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+  
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
