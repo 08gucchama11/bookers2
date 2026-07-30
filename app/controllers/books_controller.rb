@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :require_authentication
 
   def index
     @book = Book.new
@@ -9,6 +10,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def new
@@ -17,18 +19,24 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user != Current.user
+      redirect_to books_path
+    end
   end
 
   def create
     @book = Book.new(book_params)
-    @book.user_id = Current.user.id
+    @book.user = Current.user
     if @book.save
-      flash[:notice] = "You have created book successfully."
-      redirect_to @book
+      flash[:notice] = "Book was successfully created."
+      redirect_to book_path(@book)
     else
-      render :new
+      @books = Book.all
+      @user = Current.user 
+      render :index, status: :unprocessable_entity
     end
   end
+
 
   def update
     @book = Book.find(params[:id])

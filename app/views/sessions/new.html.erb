@@ -1,10 +1,9 @@
 <h1>Log in</h1>
-<%= form_with url: sign_in_path do |form| %>
-  <%= form.text_field :name, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your name", value: params[:name] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Log in", class: "btn btn-primary btn-sm" %>
+<%= form_with url: session_path, method: :post do |f| %>
+  <%= f.text_field :name %>
+  <%= f.password_field :password %>
+  <%= f.submit "Log in" %>
 <% end %>
 
 <br>
-<%= link_to "Sign up", sign_up_path %><br>
-<%= link_to "Forgot password?", new_password_path %>
+<%= link_to "Sign up", new_user_path %>
