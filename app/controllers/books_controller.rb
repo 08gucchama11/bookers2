@@ -33,7 +33,7 @@ class BooksController < ApplicationController
       redirect_to @book
     else
       @user = Current.user
-      @books = @user.books
+      @books = Book.all
       render "users/show", status: :unprocessable_entity
     end
   end

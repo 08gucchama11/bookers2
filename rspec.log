@@ -90,8 +90,8 @@ Userモデルのテスト
 [32m      Log outリンクが表示される: 左上から5番目のリンクが「Log out」である[0m
   ユーザログアウトのテスト
     ログアウト機能のテスト
-[31m      正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する (FAILED - 1)[0m
-[31m      ログアウト後のリダイレクト先が、トップになっている (FAILED - 2)[0m
+[32m      正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する[0m
+[32m      ログアウト後のリダイレクト先が、トップになっている[0m
 
 [STEP2] ユーザログイン後のテスト
   ヘッダーのテスト: ログインしている場合
@@ -203,7 +203,7 @@ Userモデルのテスト
   サクセスメッセージのテスト
 [32m    ユーザ新規登録成功時[0m
 [32m    ユーザログイン成功時[0m
-[31m    ユーザログアウト成功時 (FAILED - 3)[0m
+[32m    ユーザログアウト成功時[0m
 [32m    ユーザのプロフィール情報更新成功時[0m
 [32m    投稿データの新規投稿成功時: 投稿一覧画面から行います。[0m
 [32m    投稿データの更新成功時[0m
@@ -218,7 +218,7 @@ Userモデルのテスト
 [32m      バリデーションエラーが表示される[0m
     投稿データの新規投稿失敗: 投稿一覧画面から行い、titleを空にする
 [32m      投稿が保存されない[0m
-[31m      投稿一覧画面を表示している (FAILED - 4)[0m
+[32m      投稿一覧画面を表示している[0m
 [32m      新規投稿フォームの内容が正しい[0m
 [32m      バリデーションエラーが表示される[0m
     投稿データの更新失敗: titleを空にする
@@ -289,47 +289,6 @@ Userモデルのテスト
 [32m      投稿一覧画面でレンチアイコンが表示される[0m
 [32m      投稿詳細画面でレンチアイコンが表示される[0m
 
-Failures:
-
-  1) [STEP1] ユーザログイン前のテスト ユーザログアウトのテスト ログアウト機能のテスト 正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する
-     [31mFailure/Error: Current.session.destroy[0m
-     [31m[0m
-     [31mNoMethodError:[0m
-     [31m  undefined method `destroy' for nil[0m
-     [36m# ./app/controllers/concerns/authentication.rb:49:in `terminate_session'[0m
-     [36m# ./app/controllers/sessions_controller.rb:25:in `destroy'[0m
-     [36m# ./spec/system/01_before_login_spec.rb:254:in `block (3 levels) in <main>'[0m
-
-  2) [STEP1] ユーザログイン前のテスト ユーザログアウトのテスト ログアウト機能のテスト ログアウト後のリダイレクト先が、トップになっている
-     [31mFailure/Error: Current.session.destroy[0m
-     [31m[0m
-     [31mNoMethodError:[0m
-     [31m  undefined method `destroy' for nil[0m
-     [36m# ./app/controllers/concerns/authentication.rb:49:in `terminate_session'[0m
-     [36m# ./app/controllers/sessions_controller.rb:25:in `destroy'[0m
-     [36m# ./spec/system/01_before_login_spec.rb:254:in `block (3 levels) in <main>'[0m
-
-  3) [STEP3] 仕上げのテスト サクセスメッセージのテスト ユーザログアウト成功時
-     [31mFailure/Error: Current.session.destroy[0m
-     [31m[0m
-     [31mNoMethodError:[0m
-     [31m  undefined method `destroy' for nil[0m
-     [36m# ./app/controllers/concerns/authentication.rb:49:in `terminate_session'[0m
-     [36m# ./app/controllers/sessions_controller.rb:25:in `destroy'[0m
-     [36m# ./spec/system/03_finishing_touches_spec.rb:35:in `block (3 levels) in <main>'[0m
-
-  4) [STEP3] 仕上げのテスト 処理失敗時のテスト 投稿データの新規投稿失敗: 投稿一覧画面から行い、titleを空にする 投稿一覧画面を表示している
-     [31mFailure/Error: expect(page).to have_content other_book.body[0m
-     [31m  expected to find text "2xavwtvvbqsleo57di0u" in "Bookers\nHome Users Books Log out\n1errors prohibited this obj from being saved:\nTitle can't be blank\nUser info\nName: r93n2gmerm\nIntroduction: tlzlef8b7gt13c58ld9x\nNew book\nTitle\nOpinion\nPicture\nBooks\nImage Title Opinion yqmlj e28y5xwig86z2kliqjmd\nCopyRight Infratop.inc"[0m
-     [36m# ./spec/system/03_finishing_touches_spec.rb:138:in `block (4 levels) in <main>'[0m
-
-Finished in 11.67 seconds (files took 1.73 seconds to load)
-[31m201 examples, 4 failures[0m
-
-Failed examples:
-
-[31mrspec ./spec/system/01_before_login_spec.rb:258[0m [36m# [STEP1] ユーザログイン前のテスト ユーザログアウトのテスト ログアウト機能のテスト 正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する[0m
-[31mrspec ./spec/system/01_before_login_spec.rb:261[0m [36m# [STEP1] ユーザログイン前のテスト ユーザログアウトのテスト ログアウト機能のテスト ログアウト後のリダイレクト先が、トップになっている[0m
-[31mrspec ./spec/system/03_finishing_touches_spec.rb:28[0m [36m# [STEP3] 仕上げのテスト サクセスメッセージのテスト ユーザログアウト成功時[0m
-[31mrspec ./spec/system/03_finishing_touches_spec.rb:134[0m [36m# [STEP3] 仕上げのテスト 処理失敗時のテスト 投稿データの新規投稿失敗: 投稿一覧画面から行い、titleを空にする 投稿一覧画面を表示している[0m
+Finished in 13.38 seconds (files took 1.69 seconds to load)
+[32m201 examples, 0 failures[0m
 
