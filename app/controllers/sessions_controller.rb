@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_session_url, alert: "Try again later." }
+  skip_before_action :require_authentication
+  
 
   def new
   end
@@ -7,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(name: params[:name])
     if user&.authenticate(params[:password])
-      start_new_session_for(user)   # ← これが絶対必要
+      start_new_session_for(user)
       flash[:notice] = "Signed in successfully."
       redirect_to user_path(user)
     else
@@ -15,6 +17,9 @@ class SessionsController < ApplicationController
       redirect_to new_session_path
     end
   end
+
+
+
 
   def destroy
     terminate_session
